@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+    <title>Blog</title>
+</head>
+<body>
+    <div class="container-fluid">
+        {% comment %} including navbar for each page {% endcomment %}
+        {% include 'blog/navbar.html'%}
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 my-3">
+                    {% block msg %}
+                    {% endblock msg %}
+                </div>
+            </div>
+            <div class="row">
+            <!--we will define column in -->
+                {% block side %}
+                {% endblock side %}
+                
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </div>
+    </div>
+
+
+<script src="{% static 'blog/js/bootstrap.js' %}"></script>
+<script src="{% static 'blog/js/popper.js' %}"></script>
+<script src="{% static 'blog/js/jsplugin.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="col-sm-10">
+    <h3 class="text-white my-5">Signup Page</h3>    
+    {%if messages%}
+        {% for message in messages %}
+            <p {%if message.tags%} class="alert alert-{{message.tags}}" {% endif %}>{{message}}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form action="" method="post" novalidate>
+    {% csrf_token %}
+        {% for fm in form %}             <!--strip tags removes the li bullet points-->
+            <div class="form-group my-3">
+                {{fm.label_tag}} {{fm}} <small class="text-warning"> {{fm.errors|striptags}} </small>
+            </div>
+        {% endfor %}
+    <input type="submit" class="btn btn-primary mb-3">
+
+    <!--writing code for non field error: it means , this will show error like :- username or password wrong-->
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <p class="alert alert-danger">{{error}}</p>
+        {% endfor %}    
+    {% else %}
+    {% endif %}
+    </form>
+{% endblock content %}  

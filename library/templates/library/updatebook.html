@@ -1,8 +1,8 @@
-{% extends 'blog/base.html' %}
+{% extends 'library/base.html' %}
 {% load static %}
 {% block content %}
     <div class="col-md-10">
-        <h3 class="text-secondary my-5">Dashboard/Update post</h3>
+        <h3 class="text-white my-5">Dashboard/Update Book</h3>
 
         {%if messages%}
         {% for message in messages %}
@@ -13,7 +13,7 @@
         <form action="" method="post" novalidate>
         {% csrf_token %}
             {% for fm in form %}             <!--strip tags removes the li bullet points-->
-                <div class="form-group my-3">
+                <div class="form-group my-3 text-dark fw-bold">
                     {{fm.label_tag}} {{fm}} <small class="text-warning"> {{fm.errors|striptags}} </small>
                 </div>
             {% endfor %}

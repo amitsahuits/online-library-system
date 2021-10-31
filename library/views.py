@@ -100,7 +100,7 @@ def update_book(request,id):
             pi = Book.objects.get(pk=id)
             form = BookForm(instance=pi)
 
-        return render(request, 'blog/updatepost.html', {'form': form})
+        return render(request, 'library/updatebook.html', {'form': form})
     return HttpResponseRedirect('/login/')
 
 #delete post
@@ -110,7 +110,7 @@ def delete_book(request,id):
             pi = Book.objects.get(pk=id)
             pi.delete()
             messages.success(request, 'Article Deleted succesfully')
-            return HttpResponseRedirect('/dashboard/')
+        return HttpResponseRedirect('/afterlogin/')
     else:
         return HttpResponseRedirect('/login/')
 

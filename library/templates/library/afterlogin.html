@@ -23,7 +23,7 @@
     <a href="{% url 'addbook' %}" class="btn btn-success mb-4">Add book</a>
 
         {% if books %}
-        <table class="table table-hover bg-secondary">
+        <table class="table table-hover text-dark " style="background-color:#BDBDD7">
             <thead>
                 <tr>
                     <th scope="col" style="width:5%">ID</th>
@@ -45,7 +45,7 @@
                     <td class="text-center"><a href="{% url 'updatebook' book.id%}" class="my-3 btn btn-warning ">Edit</a>
 
                     
-                        <form action="{% url 'deletebook' book.id%}" method="book" class="d-inline">
+                        <form action="{% url 'deletebook' book.id%}" method="post" class="d-inline">
                         {% csrf_token %}
                         <input type="submit" class="btn btn-danger" value="delete">
                         </form>

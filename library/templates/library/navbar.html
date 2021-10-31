@@ -6,33 +6,51 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+
+      {% if user.is_authenticated %}
+      <!--if user have delete permission it means he is a admin user-->
+      {% if perms.book.delete_book %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Admin</a>
+        </li>
+
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'afterlogin' %}">Student</a>
+        </li>
+      {% endif %}
+      {% endif %}
+
+      {% if not user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
+        </li>     
+      {% endif %}
+        {% comment %} <li class="nav-item">
           <a class="nav-link" href="{% url 'about'%}">About</a>
-        </li>
-        <li class="nav-item">
+        </li> {% endcomment %}
+        {% comment %} <li class="nav-item">
           <a class="nav-link" href="{% url 'contact' %}">Contact</a>
-        </li>
+        </li> {% endcomment %}
 
     {% if request.user.is_authenticated %}
       <!--if user is authenticated(logged in), then only he can see these two--> 
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+          <a class="nav-link" href="{% url 'afterlogin' %}">Dashboard</a>
         </li>
         <li class="nav-item">
           <a class="nav-link logout" href="{% url 'logout' %}">Logout</a>
         </li>
-    {% endif %}
-
+    {% else %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'signup' %}">Signup</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'login' %}">login</a>
+          <a class="nav-link" href="{% url 'home' %}">Signup</a>
         </li>
         
+        <li class="nav-item">
+          <a class="nav-link" id="loginid" href="{% url 'home' %}">login</a>
+        </li>
+    {% endif %}
+      
       </ul>
     </div>
   </div>

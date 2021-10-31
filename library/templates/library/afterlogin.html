@@ -1,10 +1,6 @@
 {% extends 'library/base.html' %}
 {% load static %}
 
-
-
-
-    
    
 <!--message block-->
     {% block msg %}
@@ -22,11 +18,11 @@
 <!--content-->
     {% block content %}
 
-    <div class="col-sm-10">
+    <div class="col-sm-10 " >
     <h3 class="text-white my-4">Dashboard Page</h3> 
-    <a href="{% url 'addpost' %}" class="btn btn-success mb-4">Add Post</a>
+    <a href="{% url 'addbook' %}" class="btn btn-success mb-4">Add book</a>
 
-        {% if posts %}
+        {% if books %}
         <table class="table table-hover bg-secondary">
             <thead>
                 <tr>
@@ -37,16 +33,19 @@
                 </tr>
             </thead>
             <tbody>
-            {% for post in posts %}
+            {% for book in books %}
                 <tr>
-                    <th scope="row">{{post.id}}</th> 
-                    <td>{{post.title}}</td>  
-                    <td>{{post.desc}}</td>  
-                    <td class="text-center"><a href="{% url 'updatepost' post.id%}" class="my-3 btn btn-warning ">Edit</a>
-
-                    {% if perms.blog.delete_post %}
+                    <th scope="row">{{book.id}}</th> 
+                    <td>{{book.title}}</td>  
+                    <td>{{book.desc}}</td>
                     
-                        <form action="{% url 'deletepost' post.id%}" method="post" class="d-inline">
+                    <!--if user is admin then only he can see edit and delete option-->
+                    {% if isadmin  %} 
+
+                    <td class="text-center"><a href="{% url 'updatebook' book.id%}" class="my-3 btn btn-warning ">Edit</a>
+
+                    
+                        <form action="{% url 'deletebook' book.id%}" method="book" class="d-inline">
                         {% csrf_token %}
                         <input type="submit" class="btn btn-danger" value="delete">
                         </form>

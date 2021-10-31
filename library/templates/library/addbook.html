@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+    <div class="col-md-10">
+        <h3 class="text-secondary my-5">Dashboard/Add Post</h3>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success">{{message}}</div>
+            {% endfor %} 
+        {% endif %}
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-success" value="Add">   
+            <a href="{% url 'dashboard' %}" class="btn btn-danger">Cancel</a>     
+        </form>
+    </div>
+{% endblock content %}

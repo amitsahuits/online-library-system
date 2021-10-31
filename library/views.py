@@ -77,13 +77,13 @@ def add_book(request):
                 desc = form.cleaned_data['desc']
                 pst = Book(title=title, desc=desc)
                 pst.save()
-                messages.success(request,'post added succesfully')
+                messages.success(request,'Book added succesfully')
                 #now passing the empty form after saving post
                 form = BookForm()
         else:
             form = BookForm()
 
-        return render(request, 'blog/addpost.html' ,{'form':form})
+        return render(request, 'library/addbook.html' ,{'form':form})
     else:
         return HttpResponseRedirect('/login/')
 
@@ -110,7 +110,7 @@ def delete_book(request,id):
             pi = Book.objects.get(pk=id)
             pi.delete()
             messages.success(request, 'Article Deleted succesfully')
-        return HttpResponseRedirect('/afterlogin/')
+            return HttpResponseRedirect('/afterlogin/')
     else:
         return HttpResponseRedirect('/login/')
 

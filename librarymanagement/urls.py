@@ -28,5 +28,5 @@ urlpatterns = [
     path('adminlogin/', LoginView.as_view(template_name='library/adminlogin.html'),name='adminlogin'),
     path('studentsignup/', views.studentsignup_view,name='studentsignup'),
     path('studentlogin/', LoginView.as_view(template_name='library/studentlogin.html'),name='studentlogin'),
-
+    
 ]

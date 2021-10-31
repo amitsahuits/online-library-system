@@ -65,7 +65,7 @@ def afterlogin_view(request):
         
         return render(request, 'library/afterlogin.html', {'books': books ,'isadmin':isadmin})
     else:
-        return HttpResponseRedirect('/login/')
+        return HttpResponseRedirect('/')
 
 #Add post
 def add_book(request):
@@ -82,10 +82,10 @@ def add_book(request):
                 form = BookForm()
         else:
             form = BookForm()
-
-        return render(request, 'library/addbook.html' ,{'form':form})
+        isadmin = is_member(request.user)
+        return render(request, 'library/addbook.html' ,{'form':form,'isadmin':isadmin})
     else:
-        return HttpResponseRedirect('/login/')
+        return HttpResponseRedirect('/')
 
 #updat post
 def update_book(request,id):
@@ -99,9 +99,9 @@ def update_book(request,id):
         else:
             pi = Book.objects.get(pk=id)
             form = BookForm(instance=pi)
-
-        return render(request, 'library/updatebook.html', {'form': form})
-    return HttpResponseRedirect('/login/')
+        isadmin = is_member(request.user)
+        return render(request, 'library/updatebook.html', {'form': form,'isadmin':isadmin})
+    return HttpResponseRedirect('/')
 
 #delete post
 def delete_book(request,id):
@@ -112,6 +112,6 @@ def delete_book(request,id):
             messages.success(request, 'Article Deleted succesfully')
             return HttpResponseRedirect('/afterlogin/')
     else:
-        return HttpResponseRedirect('/login/')
+        return HttpResponseRedirect('/')
 
 

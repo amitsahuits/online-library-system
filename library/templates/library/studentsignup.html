@@ -21,7 +21,7 @@
     {% csrf_token %}
         {% for fm in form %}             <!--strip tags removes the li bullet points-->
             <div class="form-group my-3">
-                {{fm.label_tag}} <br> {{fm}} <small class="text-warning"><br> {{fm.errors|striptags}} </small>
+                {{fm.label_tag}} <br> {{fm}} <br> <small class="text-warning"><br> {{fm.errors|striptags}} </small>
             </div>
         {% endfor %}
     <button type="submit" class="btn btn-primary btn-lg">Sign Up</button>

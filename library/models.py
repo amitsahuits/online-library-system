@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager, Group
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-
+#overriding django inner BaseUser class so that we can use email instead of username
 class CustomUserManager(BaseUserManager):
     """Define a model manager for User model with no username field."""
 
